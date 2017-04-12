@@ -92,7 +92,7 @@ try:
 	try:
 		portnumx = open("port_list.txt", "r")
 		portnums = portnumx.read()
-                portnum = eval(portnums)
+		portnum = eval(portnums)
 	except:pass #If port_list.txt isn't present, oh well..
 except:
 	print("No session file found Please add one with:  -f <filename.\n \n \n")
@@ -365,7 +365,7 @@ def analyze_session_table(sessiondata, numdisplayed):
 	########################################################################################################################	
 	#Print shit off here.
 	
-	print("\n")*2
+	print("\n")
 	print("-SRX Session Analyzer-")
 	print("-Written By Tim Eberhard-")       
 	print("-Version:%s -\n\n\n" %versionnum)   
@@ -375,29 +375,29 @@ def analyze_session_table(sessiondata, numdisplayed):
 		print("Total number of Source IP's seen: %d" % total_source_ips)
 		print("Top %d Source IP addresses:" %numdisplayed)
 		print("Number of Connections	-	IP Address")
-		print("-")*80		
+		print("-")
 		for i,j in srcipl[:numdisplayed]:				
 			pp = int(j)
 			source_ips_percent = pp/total_source_ips
 			print("%s	-	%s    (%s Percent)" %(pp, i, round(source_ips_percent*100, 2)))
-		print("\n")*2
+		print("\n")
 					
 	if FLAGS.dstip:
 		print("Total number of Destination IP's seen: %d" % total_dest_ips)
 		print("Top %d Destination IP addresses:" %numdisplayed)
 		print("Number of Connections	-	IP Address")
-		print("-")*80		
+		print("-")		
 		for i,j in dstipl[:numdisplayed]:				
 			pp = int(j)
 			dest_ips_percent = pp/total_dest_ips
 			print("%s	-	%s    (%s Percent)" %(pp, i, round(dest_ips_percent*100, 2)))
-		print("\n")*2					
+		print("\n")
 
 	if FLAGS.srcport:
 		print("Total number of Source Ports seen: %d" % total_source_ips)
 		print("Top %d Source Ports:" %numdisplayed)
 		print("Number of Connections	-	Port -  Possible Service")		
-		print("-")*80
+		print("-")
 		for i,j in srcportl[:numdisplayed]:				
 			pp = int(j)
 			source_ports_percent = pp/total_source_ports
@@ -405,13 +405,13 @@ def analyze_session_table(sessiondata, numdisplayed):
 				print("%s    -    %s   (%s) (%s Percent)"%(pp, i, portnum[int(i)], round(source_ports_percent*100,2)))
 			except:
 				print("%s    -    %s   (Not listed) (%s Percent)"%(pp, i, round(source_ports_percent*100,2) ))
-		print("\n")*2
+		print("\n")
 		
 	if FLAGS.dstport:
 		print("Total number of Destination Ports seen: %d" % total_dest_ports)
 		print("Top %d Destination Ports:" %numdisplayed)
 		print("Number of Connections	-	Port -  Possible Service")	
-		print("-")*80	
+		print("-")
 		for i,j in destportl[:numdisplayed]:				
 			pp = int(j)
 			dest_ports_percent = pp/total_dest_ports
@@ -419,12 +419,12 @@ def analyze_session_table(sessiondata, numdisplayed):
 				print("%s    -    %s   (%s) (%s Percent)"%(pp, i, portnum[int(i)], round(dest_ports_percent*100,2)))
 			except:
 				print("%s    -    %s   (Not listed) (%s Percent)"%(pp, i, round(dest_ports_percent*100,2) ))
-		print("\n")*2
+		print("\n")
 				
 	if FLAGS.protocol:
 		print("Top %d Protocols:" %numdisplayed)
 		print("Number of Connections	-	Protocol")
-		print("-")*80		
+		print("-")
 		for i,j in protocoll[:numdisplayed]:				
 			pp = int(j)
 			protocol_percent = pp/total_protocols
@@ -432,46 +432,46 @@ def analyze_session_table(sessiondata, numdisplayed):
 				print("%s    -       %s  [%s]    (%s Percent)" %(pp, i, protocolnum[p], round(protocol_percent*100, 2)))
 			except:
 				print("%s    -       %s    (%s Percent)" %(pp, i, round(protocol_percent*100, 2)))
-		print("\n")*2			
+		print("\n")
 		
 	if FLAGS.policy:
 		print("Top %d Policies:" %numdisplayed)
 		print("Number of Connections	-	Policy")
-		print("-")*80		
+		print("-")
 		for i,j in policyl[:numdisplayed]:				
 			pp = int(j)
 			policies_percent = pp/total_policies
 			print("%s	-	%s    (%s Percent)"%(pp, i, round(policies_percent*100, 2)))
-		print("\n")*2															
+		print("\n")
 
 
 	if FLAGS.interface:
 		print("Top %d Interfaces" %numdisplayed)
 		print("Number of Connections	-	Interface")
-		print("-")*80		
+		print("-")
 		for i,j in interfacel[:numdisplayed]:				
 			pp = int(j)
 			interfaces_percent = pp/total_interfaces
 			print("%s	-	%s    (%s Percent)"%(pp, i, round(interfaces_percent*100, 2)))
-		print("\n")*2
+		print("\n")
 		
 	if FLAGS.packet:
 		print("Top %d talkers by packets" %numdisplayed)
 		print("Source IP	-	Destination IP	-	Source Port 	-	Destination Port	-		Packets \n")
-		print("-")*80		
+		print("-")
 		for line in xferlist[:numdisplayed]:				
 			pp = int(j)
 			print("%s \t\t %s \t\t %s \t\t\t %s \t\t %s \n"%(line[1],line[2], line[3], line[4], line[0]))
-		print("\n")*2
+		print("\n")
 		
 	if FLAGS.bytes:
 		print("Top %d talkers by bytes" %numdisplayed)
 		print("Source IP	-	Destination IP	-	Source Port 	-	Destination Port	-		Bytes \n")
-		print("-")*80		
+		print("-")
 		for line in xferbytelist[:numdisplayed]:				
 			pp = int(j)
 			print("%s \t\t %s \t\t %s \t\t\t %s \t\t %s \n"%(line[1],line[2], line[3], line[4], line[0]))
-		print("\n")*2
+		print("\n")
 				
 				
 analyze_session_table(sessiondata, numdisplayed)					
